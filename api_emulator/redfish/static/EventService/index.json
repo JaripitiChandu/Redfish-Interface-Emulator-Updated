@@ -1,0 +1,23 @@
+{
+    "@odata.id": "/redfish/v1/EventService",
+    "@odata.type": "#EventService.v1_7_0.EventService",
+    "@odata.context": "/redfish/v1/$metadata#EventService.EventService",
+    "Id": "EventService",
+    "Name": "Event Service",
+    "Description": "Event Service represents the properties for the service",
+    "Subscriptions": {
+        "@odata.id": "/redfish/v1/EventService/Subscriptions"
+    },
+    "Status": {
+        "State": "Enabled",
+        "Health": "OK"
+    },
+    "SMTP": {
+        "ServiceEnabled": null,
+        "Port": null,
+        "ServerAddress": null,
+        "FromAddress": "B200-FLM240206E3@cisco.com",
+        "Authentication": "None",
+        "ConnectionProtocol": "None"
+    }
+}

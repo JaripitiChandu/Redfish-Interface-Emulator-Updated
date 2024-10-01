@@ -1,0 +1,19 @@
+{
+    "@odata.id": "/redfish/v1/Managers/CIMC/LogServices/CIMC",
+    "@odata.type": "#LogService.v1_2_0.LogService",
+    "Entries": {
+        "@odata.id": "/redfish/v1/Managers/CIMC/LogServices/CIMC/Entries"
+    },
+    "Name": "CIMC Log Service",
+    "Id": "CIMC",
+    "SyslogFilters": [
+        null
+    ],
+    "Actions": {
+        "Oem": {
+            "#CiscoUCSExtensions.TestRemoteSyslogCfg": {
+                "target": "/redfish/v1/Managers/CIMC/LogServices/CIMC/Actions/Oem/CiscoUCSExtensions.TestRemoteSyslogCfg"
+            }
+        }
+    }
+}

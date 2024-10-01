@@ -1,0 +1,37 @@
+{
+    "@odata.id": "/redfish/v1/Registries",
+    "@odata.type": "#MessageRegistryFileCollection.MessageRegistryFileCollection",
+    "@odata.context": "/redfish/v1/$metadata#MessageRegistryFileCollection.MessageRegistryFileCollection",
+    "Description": "Registry Repository",
+    "Name": "Registry File Collection",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Registries/Base"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUCS"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUcsSensorFaults"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUcsFlexFlashFaults"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUcsHsu"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUcsSdu"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUCSStorage"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUcsOverallHealthStatus"
+        },
+        {
+            "@odata.id": "/redfish/v1/Registries/CiscoUcsAdapterFaults"
+        }
+    ],
+    "Members@odata.count": 9
+}

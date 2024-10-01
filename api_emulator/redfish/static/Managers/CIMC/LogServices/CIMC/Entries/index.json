@@ -1,0 +1,7 @@
+{
+    "@odata.id": "/redfish/v1/Managers/CIMC/LogServices/CIMC/Entries",
+    "@odata.type": "#LogEntryCollection.LogEntryCollection",
+    "Name": "CIMC Log Service Entries",
+    "Members": [],
+    "Members@odata.count": 0
+}

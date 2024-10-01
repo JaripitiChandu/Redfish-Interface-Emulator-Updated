@@ -1,0 +1,27 @@
+{
+    "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia/0",
+    "@odata.type": "#VirtualMedia.v1_4_0.VirtualMedia",
+    "@odata.context": "/redfish/v1/$metadata#VirtualMedia.VirtualMedia",
+    "Description": "Virtual Media Settings",
+    "Id": "0",
+    "MediaTypes": [
+        "DVD"
+    ],
+    "ImageName": null,
+    "Name": "vKVM-Mapped vDVD",
+    "ConnectedVia": "Applet",
+    "WriteProtected": false,
+    "Inserted": false,
+    "Image": null,
+    "Oem": {
+        "Cisco": {
+            "@odata.type": "#CiscoUCSExtensions.v1_0_0.CiscoUCSExtensions",
+            "ImageNameVariable": null,
+            "RemapOnEject": null
+        }
+    },
+    "Status": {
+        "State": "Disabled",
+        "Health": "OK"
+    }
+}

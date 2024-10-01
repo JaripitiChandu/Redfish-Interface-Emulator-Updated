@@ -1,0 +1,25 @@
+{
+    "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory",
+    "@odata.type": "#SoftwareInventoryCollection.SoftwareInventoryCollection",
+    "@odata.context": "/redfish/v1/$metadata#SoftwareInventoryCollection.SoftwareInventoryCollection",
+    "Description": "Inventory of Firmware components",
+    "Name": "Firmware Inventory",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/BIOS"
+        },
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/CIMC"
+        },
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/Board_Controller"
+        },
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/UCSB-MRAID12G-slot-FMEZZ1-SAS"
+        },
+        {
+            "@odata.id": "/redfish/v1/UpdateService/FirmwareInventory/HDD-model-AL15SEB030N-serial-49H0A07AF37G"
+        }
+    ],
+    "Members@odata.count": 5
+}

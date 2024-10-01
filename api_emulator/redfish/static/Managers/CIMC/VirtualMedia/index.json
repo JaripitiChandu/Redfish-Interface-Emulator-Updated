@@ -1,0 +1,25 @@
+{
+    "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia",
+    "@odata.type": "#VirtualMediaCollection.VirtualMediaCollection",
+    "@odata.context": "/redfish/v1/$metadata#VirtualMediaCollection.VirtualMediaCollection",
+    "Description": "Redfish-BMC Virtual Media Service Settings",
+    "Name": "Virtual Media Services",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia/0"
+        },
+        {
+            "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia/1"
+        },
+        {
+            "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia/2"
+        },
+        {
+            "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia/3"
+        },
+        {
+            "@odata.id": "/redfish/v1/Managers/CIMC/VirtualMedia/4"
+        }
+    ],
+    "Members@odata.count": 5
+}

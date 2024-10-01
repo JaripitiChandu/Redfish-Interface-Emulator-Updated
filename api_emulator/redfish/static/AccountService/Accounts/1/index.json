@@ -1,0 +1,29 @@
+{
+    "@odata.id": "/redfish/v1/AccountService/Accounts/1",
+    "@odata.type": "#ManagerAccount.v1_7_0.ManagerAccount",
+    "@odata.context": "/redfish/v1/$metadata#ManagerAccount.ManagerAccount",
+    "Name": "User Account",
+    "Description": "User Account",
+    "Id": "1",
+    "UserName": "admin",
+    "RoleId": "Admin",
+    "Enabled": true,
+    "Locked": false,
+    "AccountTypes": [
+        "Redfish",
+        null,
+        "OEM"
+    ],
+    "Password": null,
+    "PasswordChangeRequired": false,
+    "SNMP": null,
+    "Oem": {
+        "Cisco": {
+            "@odata.type": "#CiscoUCSExtensions.v1_0_0.CiscoUCSExtensions",
+            "IPMI": {
+                "Password": null,
+                "UID": 1
+            }
+        }
+    }
+}

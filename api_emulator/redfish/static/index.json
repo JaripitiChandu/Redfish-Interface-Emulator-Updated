@@ -1,0 +1,54 @@
+{
+    "@odata.id": "/redfish/v1/",
+    "@odata.type": "#ServiceRoot.v1_10_0.ServiceRoot",
+    "@odata.context": "/redfish/v1/$metadata#ServiceRoot.ServiceRoot",
+    "Id": "RootService",
+    "Name": "Cisco RESTful Root Service",
+    "Description": "Root Service",
+    "CertificateService": {
+        "@odata.id": "/redfish/v1/CertificateService"
+    },
+    "Chassis": {
+        "@odata.id": "/redfish/v1/Chassis"
+    },
+    "EventService": {
+        "@odata.id": "/redfish/v1/EventService"
+    },
+    "Systems": {
+        "@odata.id": "/redfish/v1/Systems"
+    },
+    "Managers": {
+        "@odata.id": "/redfish/v1/Managers"
+    },
+    "AccountService": {
+        "@odata.id": "/redfish/v1/AccountService"
+    },
+    "SessionService": {
+        "@odata.id": "/redfish/v1/SessionService"
+    },
+    "UpdateService": {
+        "@odata.id": "/redfish/v1/UpdateService"
+    },
+    "Registries": {
+        "@odata.id": "/redfish/v1/Registries"
+    },
+    "Tasks": {
+        "@odata.id": "/redfish/v1/TaskService"
+    },
+    "Links": {
+        "Sessions": {
+            "@odata.id": "/redfish/v1/SessionService/Sessions"
+        }
+    },
+    "RedfishVersion": "1.10.0",
+    "UUID": "CA6EF54C-879F-448A-A837-D5A0CDAE586A",
+    "ProtocolFeaturesSupported": {
+        "ExpandQuery": {
+            "ExpandAll": true,
+            "Levels": true,
+            "Links": true,
+            "MaxLevels": 2,
+            "NoLinks": true
+        }
+    }
+}

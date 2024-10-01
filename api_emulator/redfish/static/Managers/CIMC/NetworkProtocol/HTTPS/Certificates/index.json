@@ -1,0 +1,13 @@
+{
+    "@odata.id": "/redfish/v1/Managers/CIMC/NetworkProtocol/HTTPS/Certificates",
+    "@odata.type": "#CertificateCollection.CertificateCollection",
+    "@odata.context": "/redfish/v1/$metadata#CertificateCollection.CertificateCollection",
+    "Description": "Collection of Certificates",
+    "Name": "Certificate",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/Managers/CIMC/NetworkProtocol/HTTPS/Certificates/1"
+        }
+    ],
+    "Members@odata.count": 1
+}

@@ -1,0 +1,25 @@
+{
+    "@odata.id": "/redfish/v1/AccountService/Roles",
+    "@odata.type": "#RoleCollection.RoleCollection",
+    "@odata.context": "/redfish/v1/$metadata#RoleCollection.RoleCollection",
+    "Description": "Collection of Roles",
+    "Name": "Roles Collection",
+    "Members": [
+        {
+            "@odata.id": "/redfish/v1/AccountService/Roles/ReadOnly"
+        },
+        {
+            "@odata.id": "/redfish/v1/AccountService/Roles/Admin"
+        },
+        {
+            "@odata.id": "/redfish/v1/AccountService/Roles/IPMIAdmin"
+        },
+        {
+            "@odata.id": "/redfish/v1/AccountService/Roles/IPMIReadOnly"
+        },
+        {
+            "@odata.id": "/redfish/v1/AccountService/Roles/SNMPOnly"
+        }
+    ],
+    "Members@odata.count": 5
+}

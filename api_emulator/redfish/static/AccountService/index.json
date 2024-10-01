@@ -1,0 +1,89 @@
+{
+    "@odata.id": "/redfish/v1/AccountService",
+    "@odata.type": "#AccountService.v1_7_2.AccountService",
+    "@odata.context": "/redfish/v1/$metadata#AccountService.AccountService",
+    "Id": "AccountService",
+    "Name": "Account Service",
+    "Description": "Account Service",
+    "Accounts": {
+        "@odata.id": "/redfish/v1/AccountService/Accounts"
+    },
+    "Roles": {
+        "@odata.id": "/redfish/v1/AccountService/Roles"
+    },
+    "PrivilegeMap": {
+        "@odata.id": "/redfish/v1/AccountService/PrivilegeMap"
+    },
+    "ServiceEnabled": true,
+    "MaxPasswordLength": 127,
+    "MinPasswordLength": 8,
+    "AccountLockoutCounterResetAfter": 0,
+    "AccountLockoutDuration": 0,
+    "AccountLockoutThreshold": 0,
+    "AccountLockoutCounterResetEnabled": true,
+    "Oem": {
+        "Cisco": {
+            "@odata.type": "#CiscoUCSExtensions.v1_0_0.CiscoUCSExtensions",
+            "AccountsCapabilities": [
+                {
+                    "AccountType": "Redfish",
+                    "PasswordObfuscationCapabilities": [
+                        "OriginalClear"
+                    ]
+                },
+                {
+                    "AccountType": "IPMI",
+                    "PasswordObfuscationCapabilities": [
+                        "OriginalClear"
+                    ]
+                },
+                {
+                    "AccountType": "SNMP",
+                    "PasswordObfuscationCapabilities": [
+                        "OriginalClear"
+                    ]
+                }
+            ],
+            "StrongPasswordPolicyEnabled": false,
+            "PasswordHistory": 5,
+            "PasswordExpiry": {
+                "ExpiryDuration": 0,
+                "Enabled": false,
+                "GracePeriod": 0,
+                "NotificationPeriod": 0
+            },
+            "LDAPSettings": {
+                "ServerTimeout": 0,
+                "Domain": "",
+                "SearchFilterAttribute": "NONE",
+                "SearchNestedGroupDepth": 0,
+                "BindingMethod": "LoginCredentials",
+                "BindingDistinguishedName": "NONE",
+                "BindingPassword": null
+            },
+            "LDAPDNSSettings": {
+                "DNSQueryEnable": false,
+                "SourceMethod": "Extracted",
+                "DomainToSearch": "NONE",
+                "ForestToSearch": "NONE"
+            }
+        }
+    },
+    "LDAP": {
+        "LDAPService": {
+            "Oem": {
+                "Cisco": {
+                    "LDAPGroupAuthorizationEnabled": false
+                }
+            },
+            "SearchSettings": {
+                "BaseDistinguishedNames": [],
+                "GroupsAttribute": null,
+                "UsernameAttribute": null
+            }
+        },
+        "ServiceAddresses": [],
+        "ServiceEnabled": false,
+        "RemoteRoleMapping": []
+    }
+}
