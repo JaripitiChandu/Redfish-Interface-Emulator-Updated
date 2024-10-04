@@ -124,13 +124,13 @@ class MemoryCollectionAPI(Resource):
     def get(self, ident):
         logging.info(self.__class__.__name__ +' GET called')
         try:
-            bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
-            passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
-            if not passed:
-                return output, 404
-            self.config["@odata.id"] = "/redfish/v1/Systems/{}/Memory".format(ident)
-            self.config["Members"] = [{'@odata.id': x} for x in output]
-            self.config["Members@odata.count"] = len(output)
+            # bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            # passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
+            # if not passed:
+            #     return output, 404
+            # self.config["@odata.id"] = "/redfish/v1/Systems/{}/Memory".format(ident)
+            # self.config["Members"] = [{'@odata.id': x} for x in output]
+            # self.config["Members@odata.count"] = len(output)
             resp = self.config, 200
         except Exception:
             traceback.print_exc()

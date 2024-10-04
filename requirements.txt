@@ -14,3 +14,4 @@ flask_httpauth
 jsonschema
 cryptography
 cffi
+boltdb

@@ -105,88 +105,90 @@ class LDAP(Resource):
 
 
 # Chassis Collection API
-# class Accounts(Resource):
+class LDAPCollectionAPI(Resource):
 
-#     def __init__(self):
-#         logging.info(f'{self.__class__.__name__} init called')
-#         self.rb = g.rest_base
-#         self.config = {
-#             "@odata.id": self.rb + "AccountService/Accounts",
-#             "@odata.type": "#ManagerAccountCollection.ManagerAccountCollection",
-#             "@odata.context": self.rb + "$metadata#ManagerAccountCollection.ManagerAccountCollection",
-#             "Description": "Collection of Accounts",
-#             "Name": "Account Collection",
-#             "Members": [],
-#             "Members@odata.count": 0
-#         }
+    def __init__(self):
+        logging.info(f'{self.__class__.__name__} init called')
+        self.rb = g.rest_base
+        bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy)
+        self.config = {
+            "@odata.id": "/redfish/v1/AccountService/LDAP/Certificates",
+            "@odata.type": "#CertificateCollection.CertificateCollection",
+            "@odata.context": "/redfish/v1/$metadata#CertificateCollection.CertificateCollection",
+            "Description": "A Collection of Certificate resource instances.",
+            "Name": "Certificate Collection",
+            "Members": [{'odata.id':x} for x in output],
+            "Members@odata.count": len(output)
+        }
 
-#     # HTTP GET
-#     def get(self):
-#         logging.info(self.__class__.__name__ +' GET called')
-#         try:
-#             bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
-#             passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
-#             if not passed:
-#                 return output, 404
+    # HTTP GET
+    def get(self):
+        logging.info(self.__class__.__name__ +' GET called')
+        try:
+            # bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            # passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
+            # if not passed:
+            #     return output, 404
 
-#             self.config["Members"] = [{'@odata.id': x} for x in output]
-#             self.config["Members@odata.count"] = len(output)
-#             resp = self.config, 200
-#         except Exception:
-#             traceback.print_exc()
-#             resp = INTERNAL_SERVER_ERROR
-#         return resp
+            # self.config["Members"] = [{'@odata.id': x} for x in output]
+            # self.config["Members@odata.count"] = len(output)
+            resp = self.config, 200
+        except Exception:
+            traceback.print_exc()
+            resp = INTERNAL_SERVER_ERROR
+        return resp
 
-#     # HTTP PUT
-#     def put(self):
-#         logging.info(self.__class__.__name__ + ' PUT called')
-#         return f'PUT is not a supported command for {self.__class__.__name__}', 405
+    # HTTP PUT
+    def put(self):
+        logging.info(self.__class__.__name__ + ' PUT called')
+        return f'PUT is not a supported command for {self.__class__.__name__}', 405
 
-#     def verify(self, config):
-#         #TODO: Implement a method to verify that the POST body is valid
-#         return True,{}
+    def verify(self, config):
+        #TODO: Implement a method to verify that the POST body is valid
+        return True,{}
 
-#     # HTTP POST
-#     # POST should allow adding multiple instances to a collection.
-#     # For now, this only adds one instance.
-#     # TODO: 'id' should be obtained from the request data.
-#     def post(self):
-#         logging.info(self.__class__.__name__ + ' POST called')
-#         try:
-#             config = request.get_json(force=True)
-#             logging.info(f"Payload = {config}")
-#             bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
-#             if len(INDICES)>1:
-#                 split1, split2 = bucket_hierarchy[:INDICES[-2]+1], bucket_hierarchy[INDICES[-2]+1:]
-#                 present, message = g.is_required_bucket_hierarchy_present(bucket_hierarchy[:INDICES[-2]+1], INDICES[:-1])
-#             if not present:
-#                 return message, 404
-#             else:
-#                 split1, split2 = tuple(), bucket_hierarchy
+    # HTTP POST
+    # POST should allow adding multiple instances to a collection.
+    # For now, this only adds one instance.
+    # TODO: 'id' should be obtained from the request data.
+    def post(self):
+        logging.info(self.__class__.__name__ + ' POST called')
+        try:
+            config = request.get_json(force=True)
+            logging.info(f"Payload = {config}")
+            bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            if len(INDICES)>1:
+                split1, split2 = bucket_hierarchy[:INDICES[-2]+1], bucket_hierarchy[INDICES[-2]+1:]
+                present, message = g.is_required_bucket_hierarchy_present(bucket_hierarchy[:INDICES[-2]+1], INDICES[:-1])
+            if not present:
+                return message, 404
+            else:
+                split1, split2 = tuple(), bucket_hierarchy
 
-#             with db.update() as bucket:
-#                 for bucket_name in split1:
-#                     bucket = bucket.bucket(str(bucket_name).encode())
-#                 for bucket_name in split2:
-#                     temp = bucket.bucket(str(bucket_name).encode())
-#                     if not temp:
-#                         temp = bucket.create_bucket(str(bucket_name).encode())
-#                     bucket = temp
-#             if bucket.get(INDEX):
-#                 return g.rest_base+'/'.join(map(str, bucket_hierarchy)) + ' already exists', 409
-#             bucket.put(INDEX, json.dumps(request.json).encode())
-#             return {}, 201
-#         except Exception:
-#             traceback.print_exc()
-#             resp = INTERNAL_SERVER_ERROR
-#         return resp
+            with db.update() as bucket:
+                for bucket_name in split1:
+                    bucket = bucket.bucket(str(bucket_name).encode())
+                for bucket_name in split2:
+                    temp = bucket.bucket(str(bucket_name).encode())
+                    if not temp:
+                        temp = bucket.create_bucket(str(bucket_name).encode())
+                    bucket = temp
+            if bucket.get(INDEX):
+                return g.rest_base+'/'.join(map(str, bucket_hierarchy)) + ' already exists', 409
+            bucket.put(INDEX, json.dumps(request.json).encode())
+            return {}, 201
+        except Exception:
+            traceback.print_exc()
+            resp = INTERNAL_SERVER_ERROR
+        return resp
 
-#     # HTTP PATCH
-#     def patch(self):
-#         logging.info(self.__class__.__name__ + ' PATCH called')
-#         return 'PATCH is not a supported command for ChassisCollectionAPI', 405
+    # HTTP PATCH
+    def patch(self):
+        logging.info(self.__class__.__name__ + ' PATCH called')
+        return 'PATCH is not a supported command for ChassisCollectionAPI', 405
 
-#     # HTTP DELETE
-#     def delete(self):
-#         logging.info(self.__class__.__name__ + ' DELETE called')
-#         return 'DELETE is not a supported command for ChassisCollectionAPI', 405
+    # HTTP DELETE
+    def delete(self):
+        logging.info(self.__class__.__name__ + ' DELETE called')
+        return 'DELETE is not a supported command for ChassisCollectionAPI', 405

@@ -106,3 +106,62 @@ class PCIeDeviceAPI(Resource):
             traceback.print_exc()
             resp = "Internal Server Error", INTERNAL_ERROR
         return resp
+class PCIeDeviceCollectionAPI(Resource):
+    def __init__(self):
+        logging.info('PCIeCollectionAPI init called')
+        self.rb = g.rest_base
+        bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            # get list of resources
+        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy)
+        self.config = {
+            "@odata.id": "/redfish/v1/Chassis/1/PCIeDevices",
+            "@odata.type": "#PCIeDeviceCollection.PCIeDeviceCollection",
+            "@odata.context": "/redfish/v1/$metadata#PCIeDeviceCollection.PCIeDeviceCollection",
+            "Description": "Collection of PCIeDevice resource instances for this system",
+            "Name": "PCIeDevice Collection",
+            "Members": [{'odata.id':x} for x in output],
+            "Members@odata.count": len(output)
+        }
+
+    # HTTP GET
+    def get(self):
+        logging.info('SensorsCollectionAPI GET called')
+        try:
+            # define the bucket hierarchy for collection
+            # bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            # # get list of resources
+            # passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy)
+            # if not passed:
+            #     return output, 404
+            # update the value of config using obtained values
+            # self.config["Members"] = [{'@odata.id': x} for x in output]
+            # self.config["Members@odata.count"] = len(output)
+            resp = self.config, 200
+        except Exception:
+            traceback.print_exc()
+            resp = INTERNAL_ERROR
+        return resp
+
+    # HTTP PUT
+    def put(self):
+        logging.info('SensorsCollectionAPI PUT called')
+        return 'PUT is not a supported command for SensorsCollectionAPI', 405
+
+    def verify(self, config):
+        #TODO: Implement a method to verify that the POST body is valid
+        return True,{}
+
+    # HTTP POST
+    def post(self):
+        logging.info('SensorsCollectionAPI POST called')
+        return 'POST is not a supported command for SensorsCollectionAPI', 405
+ 
+    # HTTP PATCH
+    def patch(self):
+        logging.info('SensorsCollectionAPI PATCH called')
+        return 'PATCH is not a supported command for SensorsCollectionAPI', 405
+
+    # HTTP DELETE
+    def delete(self):
+        logging.info('SensorsCollectionAPI DELETE called')
+        return 'DELETE is not a supported command for SensorsCollectionAPI', 405

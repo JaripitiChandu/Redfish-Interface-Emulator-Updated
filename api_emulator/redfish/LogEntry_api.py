@@ -83,13 +83,15 @@ class LogEntryCollectionAPI(Resource):
     def __init__(self):
         logging.info('LogEntryCollectionAPI init called')
         self.rb = g.rest_base
+        bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
         self.config = {
             '@odata.id': " ",
             '@odata.type': '#LogEntryCollection.LogEntryCollection',
             '@odata.context': self.rb + '$metadata#LogEntryCollection.LogEntryCollection',
             'Name': 'Log Service Collection',
-            "Members": [],
-            "Members@odata.count": 0,
+            "Members": [{'odata.id':x} for x in output],
+            "Members@odata.count": len(output),
         }
 
     # HTTP GET

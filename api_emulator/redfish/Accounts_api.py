@@ -105,19 +105,21 @@ class Account(Resource):
 
 
 # Chassis Collection API
-class Accounts(Resource):
+class AccountsCollection(Resource):
 
     def __init__(self):
         logging.info(f'{self.__class__.__name__} init called')
         self.rb = g.rest_base
+        bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
         self.config = {
             "@odata.id": self.rb + "AccountService/Accounts",
             "@odata.type": "#ManagerAccountCollection.ManagerAccountCollection",
             "@odata.context": self.rb + "$metadata#ManagerAccountCollection.ManagerAccountCollection",
             "Description": "Collection of Accounts",
             "Name": "Account Collection",
-            "Members": [],
-            "Members@odata.count": 0
+            "Members": [{'odata.id':x} for x in output],
+            "Members@odata.count": len(output)
         }
 
     # HTTP GET

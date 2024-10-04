@@ -126,7 +126,11 @@ def get_collection_from_bucket_hierarchy(buckets, indices=None):
             for k, v in bucket:
                 if not v:
                     if bucket.bucket(k):
+                        dictionary=bucket.bucket(k).get(INDEX)
+                        if dictionary is None:
+                            continue
                         bucket_members.append(json.loads(bucket.bucket(k).get(INDEX).decode())['@odata.id'])
+                        # print(f"bucket  members : {bucket_members}")
     return True, bucket_members
 
 

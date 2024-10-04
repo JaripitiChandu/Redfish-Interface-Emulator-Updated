@@ -99,7 +99,7 @@ class JsonSchemasCollectionAPI(Resource):
             "Description": "Schema Repository",
             "Name": "JSON Schema Collection",
             "Members": [ {'odata.id':x} for x in output],
-            "Members@odata.count": 122
+            "Members@odata.count": len(output)
         }
 
     # HTTP GET

@@ -105,7 +105,7 @@ class Role(Resource):
 
 
 # Chassis Collection API
-class Roles(Resource):
+class RolesCollection(Resource):
 
     def __init__(self):
         logging.info(f'{self.__class__.__name__} init called')

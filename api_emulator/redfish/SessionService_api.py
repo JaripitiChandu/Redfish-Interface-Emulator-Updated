@@ -19,12 +19,12 @@ from flask_restful import reqparse, Api, Resource
 
 # Resource and SubResource imports
 from .templates.SessionService import get_SessionService_instance
-from .sessions_api import SessionCollectionAPI, SessionAPI, CreateSession
+from .sessions_api import SessionCollectionAPI, SessionAPI
 
 config = {}
 
 INTERNAL_ERROR = 500
-
+INDICES=[1]
 
 # SessionService Singleton API
 # SessionService does not have a Singleton API
@@ -108,8 +108,8 @@ class CreateSessionService(Resource):
             g.api.add_resource(SessionAPI,             '/redfish/v1/SessionService/Sessions/<string:ident>', resource_class_kwargs={'rb': g.rest_base})
             # Create an instance of subordinate subscription resource
             #cfg = CreateSubscription()
-            out = cfg.__init__(resource_class_kwargs={'rb': g.rest_base,'id':"1"})
-            out = cfg.put("1")
+            # out = cfg.__init__(resource_class_kwargs={'rb': g.rest_base,'id':"1"})
+            # out = cfg.put("1")
             resp = config, 200
         except Exception:
             traceback.print_exc()

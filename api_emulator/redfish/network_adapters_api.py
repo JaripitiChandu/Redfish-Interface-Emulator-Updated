@@ -46,7 +46,7 @@ class NetworkAdaptersAPI(Resource):
             traceback.print_exc()
 
     # HTTP GET
-    def get(self, ident, ident1):
+    def get(self, ident, ident1,ident2):
         logging.info('NetworkAdaptersAPI GET called')
         try:
             bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
@@ -57,7 +57,7 @@ class NetworkAdaptersAPI(Resource):
         return resp
 
     # HTTP PUT
-    def put(self,ident, ident1):
+    def put(self,ident, ident1,ident2):
         logging.info('NetworkAdaptersAPI PUT called')
         return 'PUT is not a supported command for NetworkAdaptersAPI', 405
 
@@ -66,7 +66,7 @@ class NetworkAdaptersAPI(Resource):
     # instances from a predefined template. The new instance is given
     # the identifier "ident", which is taken from the end of the URL.
     # PATCH commands can then be used to update the new instance.
-    def post(self, ident, ident1):
+    def post(self, ident, ident1,ident2):
         logging.info(self.__class__.__name__ + ' POST called')
         try:
             bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
@@ -77,7 +77,7 @@ class NetworkAdaptersAPI(Resource):
         return resp
 
     # HTTP PATCH
-    def patch(self, ident, ident1):
+    def patch(self, ident, ident1,ident2):
         logging.info(self.__class__.__name__ + ' PATCH called')
         patch_data = request.get_json(force=True)
         logging.info(f"Payload = {patch_data}")
@@ -110,14 +110,16 @@ class NetworkAdaptersCollectionAPI(Resource):
     def __init__(self):
         logging.info('NetworkAdaptersCollectionAPI init called')
         self.rb = g.rest_base
-
+        bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            # get list of resources
+        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES[:-1])
         self.config = {
             '@odata.id': " ",
             '@odata.type': '#NetworkAdapterCollection.NetworkAdapterCollection',
             '@odata.context': self.rb + '$metadata#NetworkAdapterCollection.NetworkAdapterCollection',
             'Name': 'NetworkAdapters Collection',
-            "Members": [],
-            "Members@odata.count": 0
+            "Members": [{'odata.id':x} for x in output],
+            "Members@odata.count": len(output)
         }
 
     # HTTP GET

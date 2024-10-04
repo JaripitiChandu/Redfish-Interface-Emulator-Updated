@@ -1,3 +1,4 @@
+
 # Copyright Notice:
 # Copyright 2017-2019 DMTF. All rights reserved.
 # License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/Redfish-Interface-Emulator/blob/main/LICENSE.md
@@ -89,9 +90,46 @@ class RegistriesCollectionAPI(Resource):
         logging.info('RegistriesCollectionAPI init called')
         self.rb = g.rest_base
         bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
-        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES)
+        passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy)
         if not passed:
             return output, 404
+        # self.config={
+#     "@odata.id": "/redfish/v1/Registries",
+#     "@odata.type": "#MessageRegistryFileCollection.MessageRegistryFileCollection",
+#     "@odata.context": "/redfish/v1/$metadata#MessageRegistryFileCollection.MessageRegistryFileCollection",
+#     "Description": "Registry Repository",
+#     "Name": "Registry File Collection",
+#     "Members": [
+#         {
+#             "@odata.id": "/redfish/v1/Registries/Base"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUCS"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUcsSensorFaults"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUcsFlexFlashFaults"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUcsHsu"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUcsSdu"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUCSStorage"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUcsOverallHealthStatus"
+#         },
+#         {
+#             "@odata.id": "/redfish/v1/Registries/CiscoUcsAdapterFaults"
+#         }
+#     ],
+#     "Members@odata.count": 9
+# }
         self.config = {
             "@odata.id": "/redfish/v1/Registries",
             "@odata.type": "#MessageRegistryFileCollection.MessageRegistryFileCollection",
@@ -106,6 +144,10 @@ class RegistriesCollectionAPI(Resource):
     def get(self):
         logging.info('RegistriesCollectionAPI GET called')
         try:
+            # bucket_hierarchy = request.path.lstrip(g.rest_base).split('/')
+            # passed, output = g.get_collection_from_bucket_hierarchy(bucket_hierarchy, INDICES)
+            # self.config["Members"] = [{'@odata.id': x} for x in output]
+            # self.config["Members@odata.count"] = len(output)
             resp = self.config, 200
         except Exception:
             traceback.print_exc()

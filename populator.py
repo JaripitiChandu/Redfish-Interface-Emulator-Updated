@@ -7,7 +7,7 @@ import requests
 
 ROOT_FOLDER = 'api_emulator/redfish/static/'
 PORT = 5000
-REFERENCE_FILE = 'out_index.txt'
+REFERENCE_FILE = 'output.txt'
 ENDPOINTS_TO_SKIP = []
 REDFISH_URL = f'http://127.0.0.1:{PORT}/redfish/v1/'
 
